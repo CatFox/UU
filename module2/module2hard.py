@@ -1,6 +1,6 @@
 import random
 stone1 = random.randrange(3, 20)
-print(stone1)
+# print(stone1)
 stone2 = ""
 list_comb_numbers = []
 for i in range(1, 21):
