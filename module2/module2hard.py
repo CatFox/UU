@@ -10,8 +10,8 @@ for i in range(1, 21):
             comb_numbers.sort()
             if comb_numbers not in list_comb_numbers:
                 list_comb_numbers.append(comb_numbers)
-for comb_number in list_comb_numbers:
-    if stone1 % sum(comb_number) == 0:
+for comb_numbers in list_comb_numbers:
+    if stone1 % sum(comb_numbers) == 0:
 #       print(comb_number)
-        stone2 += str(comb_number[0]) + str(comb_number[1])
+        stone2 += str(comb_numbers[0]) + str(comb_numbers[1])
 print("На первом камне выпало:", stone1, ", пароль для второго камня:", stone2)
