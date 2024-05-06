@@ -18,5 +18,6 @@ def test2(x="x", y="y", z="z"):
     print(x, y, z)
 
 
+# выполнение функций
 test()
 test2()
