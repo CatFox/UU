@@ -1,4 +1,5 @@
 import random
+
 stone1 = random.randrange(3, 20)
 # print(stone1)
 stone2 = ""
@@ -12,6 +13,6 @@ for i in range(1, 21):
                 list_comb_numbers.append(comb_numbers)
 for comb_numbers in list_comb_numbers:
     if stone1 % sum(comb_numbers) == 0:
-#       print(comb_number)
-        stone2 += str(comb_numbers[0]) + str(comb_numbers[1])
-print("На первом камне выпало:", stone1, ", пароль для второго камня:", stone2)
+        # print(comb_number)
+        stone2 += f"{comb_numbers[0]}{comb_numbers[1]}"
+print(f"На первом камне выпало: {stone1}. Пароль для второго камня: {stone2}")
