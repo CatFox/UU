@@ -20,3 +20,4 @@ def factorial(n):
 
 factorial_n = factorial(int(input("Введите число для вычисления факториала:")))
 print(factorial_n)
+
