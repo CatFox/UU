@@ -9,11 +9,11 @@ def travers(list_, count=0):
             else:
                 if isinstance(element, (int, float)):
                     count += element
-                    print(element, element, count)
+                    # print(element, element, count)
                 else:
                     if isinstance(element, str):
                         count += len(element)
-                        print(element, len(element), count)
+                        # print(element, len(element), count)
     return count
 
 
