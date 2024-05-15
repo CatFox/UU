@@ -1,14 +1,14 @@
 def travers(list_, count=0):
     for element in list_:
-        if isinstance(element, (list, tuple, set)):
-            count = (travers(element, count))
-        elif isinstance(element, dict):
+        if isinstance(element, dict):
             count = travers(element.keys(), count)
             count = travers(element.values(), count)
         elif isinstance(element, (int, float)):
             count += element
         elif isinstance(element, str):
             count += len(element)
+        else:
+            count = (travers(element, count))
     return count
 
 
