@@ -1,14 +1,16 @@
 import time
+
+
 class UrTube:
     def __init__(self):
         self.users = []
         self.videos = []
-        self.current_user = ""
+        self.current_user = None
 
     def log_in(self, nickname, password):
         for user in self.users:
             if user.username == nickname and user.password == hash(password):
-                self.current_user = user.nickname
+                self.current_user = user
 
     def register(self, nickname, password, age):
         for user in self.users:
@@ -17,15 +19,17 @@ class UrTube:
                 return
         user = User(nickname, password, age)
         self.users.append(user)
-        self.current_user = nickname
+        self.current_user = user
 
     def log_out(self):
-        self.current_user = ""
+        self.current_user = None
 
-    def add(self, *args):
-        for video in args:
-            if video not in self.videos:
-                self.videos.append(video)
+    def add(self, *videos):
+        for video in videos:
+            for checkin_video in self.videos:
+                if video.title == checkin_video.title:
+                    return
+            self.videos.append(video)
 
     def get_videos(self, search_word):
         found_videos = []
@@ -35,12 +39,12 @@ class UrTube:
         return found_videos
 
     def watch_video(self, name_video):
-        if self.current_user == "":
+        if self.current_user == None:
             print("Войдите в аккаунт, чтобы смотреть видео")
         else:
             for video in self.videos:
                 if video.title == name_video:
-                    if video.adult_mode and self.get_current_user_age() < 18:
+                    if video.adult_mode and self.current_user.age < 18:
                         print("Вам нет 18 лет, пожалуйста покиньте страницу")
                     else:
                         for i in range(1, video.duration + 1):
@@ -49,18 +53,16 @@ class UrTube:
                             time.sleep(1)
                         print("Конец видео.")
 
-    def get_current_user_age(self):
-        for user in self.users:
-            if user.username == self.current_user:
-                return user.age
-
 
 class Video:
     def __init__(self, title, duration, adult_mode=False):
         self.title = title
         self.duration = duration
-        self.time_now = time.time()
+        self.time_now = 0
         self.adult_mode = adult_mode
+
+    def __str__(self):
+        return self.title
 
 
 class User:
@@ -68,6 +70,9 @@ class User:
         self.username = username
         self.password = hash(password)
         self.age = age
+
+    def __str__(self):
+        return self.username
 
 
 ur = UrTube()
